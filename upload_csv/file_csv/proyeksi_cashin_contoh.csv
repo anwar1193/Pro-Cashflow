@@ -1,0 +1,19 @@
+Kode Status,Status,Tanggal (dd/mm/YYYY),Jumlah (Amount)
+A,Pencairan Bank,18/06/2021,10000
+C,Setoran Angsuran Debitur,18/06/2021,10000
+D,Angsuran Dari Kantor POS,18/06/2021,10000
+E,Pelunasan Awal,18/06/2021,10000
+F,Penjualan AYDA,18/06/2021,10000
+G,Recovery WO,18/06/2021,10000
+H,Ganti Klaim Asuransi,18/06/2021,10000
+I,Pembayaran Suryamas,18/06/2021,10000
+J,"Penerimaan Cicilan (Karyawan, dll)",18/06/2021,10000
+K,Pengembalian Uang Muka,18/06/2021,10000
+L,Penjualan Kendaraan Inventaris,18/06/2021,10000
+M,Sewa Gedung,18/06/2021,10000
+N,Terima Pengembalian Pinjaman,18/06/2021,10000
+O,Pencairan PRK,18/06/2021,10000
+P,Pinjaman/Hutang Pemegang Saham,18/06/2021,10000
+Q,Setoran Modal,18/06/2021,10000
+R,Pencairan Deposito,18/06/2021,10000
+S,Pencairan Rekening B2B,18/06/2021,10000

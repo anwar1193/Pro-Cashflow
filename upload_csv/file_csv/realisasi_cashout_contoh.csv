@@ -1,0 +1,63 @@
+Kode Status,Status,Tanggal (dd/mm/YYYY),Jumlah (Amount)
+A,Pencairan Dealer,18/06/2021,10000
+B,Pembayaran Refund & Insentif Dealer,18/06/2021,10000
+C,Angsuran Bank (Non Mirroring),18/06/2021,10000
+D,Angsuran Bank (Mirroring),18/06/2021,10000
+E,Pelunasan Closed Reguler & ET,18/06/2021,10000
+F,Pelunasan Buy Back 90 Up,18/06/2021,10000
+G,Pelunasan AYDA,18/06/2021,10000
+H,Pelunasan WO,18/06/2021,10000
+I,Menara Sentraya,18/06/2021,10000
+J,Inventaris Kendaraan Kantor,18/06/2021,10000
+K,Bank EXIM,18/06/2021,10000
+L,Bayar PRK Mega dan BCA,18/06/2021,10000
+M,"Buy Back 90 Up, Memo Percepatan Cabang",18/06/2021,10000
+N,Bayar CSUL,18/06/2021,10000
+O,Isi Kas Besar dan Kas Kecil,18/06/2021,10000
+P,Isi Biaya Bank,18/06/2021,10000
+Q,Sewa Kantor/Rumah Kacab/Pool,18/06/2021,10000
+R,Tagihan Listrik - Cabang,18/06/2021,10000
+S,Tagihan Air - Cabang,18/06/2021,10000
+T,Tagihan Telepon Cabang,18/06/2021,10000
+U,Internet - Cabang,18/06/2021,10000
+V,Beli ATK dan Cetakan,18/06/2021,10000
+W,Perbaikan Kendaraan,18/06/2021,10000
+X,Perbaikan Gedung,18/06/2021,10000
+Y,Tour dan Raker,18/06/2021,10000
+Z,Penggantian Klaim Asuransi Ke Nasabah,18/06/2021,10000
+A2,Penyelesaian Uang Muka,18/06/2021,10000
+B2,Biaya Penarikan AYDA,18/06/2021,10000
+C2,Biaya Penarikan AYWO,18/06/2021,10000
+D2,Biaya Penagihan,18/06/2021,10000
+E2,"Perjalanan Dinas Ke Luar Kota, Representasi",18/06/2021,10000
+F2,Pajak Kendaraan,18/06/2021,10000
+G2,Biaya Pajak,18/06/2021,10000
+H2,"Biaya Gaji, Cadangan Gaji",18/06/2021,10000
+I2,"Bayar Pesangon, Kewajiban Imbalan Karyawan",18/06/2021,10000
+J2,"Biaya THR, Bonus",18/06/2021,10000
+K2,Biaya Jamsostek dan BPJS,18/06/2021,10000
+L2,Biaya Profesional,18/06/2021,10000
+M2,Biaya Pendidikan/Diklat,18/06/2021,10000
+N2,Biaya Listrik - Kantor Pusat,18/06/2021,10000
+O2,Biaya Air - Kantor Pusat,18/06/2021,10000
+P2,Biaya Internet - Kantor Pusat,18/06/2021,10000
+Q2,Biaya Telepon - Kantor Pusat,18/06/2021,10000
+R2,Biaya POS dan Pengiriman,18/06/2021,10000
+S2,"Biaya PBB, Service Charge Sentraya",18/06/2021,10000
+T2,Biaya Maintenance (Dleas dan JARI),18/06/2021,10000
+U2,Iuran Keanggotaan,18/06/2021,10000
+V2,"Biaya Microsoft, Aktiva Tak Berwujud",18/06/2021,10000
+W2,Biaya Pengembalian Titipan Lain-lain,18/06/2021,10000
+X2,Biaya Iklan,18/06/2021,10000
+Y2,Keperluan Kantor,18/06/2021,10000
+Z2,Biaya Sewa Mesin Fotocopy,18/06/2021,10000
+A3,Biaya Perbaikan/Pembelian/Sewa Peralatan Kantor,18/06/2021,10000
+B3,"Biaya Asuransi Hagati, Sinar Mas",18/06/2021,10000
+C3,Biaya BMHD Notaris Fiducia,18/06/2021,10000
+D3,Biaya Jasa Perantara,18/06/2021,10000
+E3,Biaya Jasa Penyimpanan,18/06/2021,10000
+F3,Biaya Pengembalian Titipan Lain-lain,18/06/2021,10000
+G3,Biaya Pinjaman PRK,18/06/2021,10000
+H3,Penempatan Deposito,18/06/2021,10000
+I3,Pengembalian Rekening B2B,18/06/2021,10000
+J3,Biaya Lain-lain,18/06/2021,10000
