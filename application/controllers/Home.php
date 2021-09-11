@@ -2592,9 +2592,16 @@ class home extends CI_Controller {
 				$tCashoutProj_5 = $this->m_home->totalCashoutProj_5($tanggal5);
 				$tCashoutReal_5 = $this->m_home->totalCashoutReal_5($tanggal5);
 
+			  	$level = $this->libraryku->tampil_user()->level;
+				
 
 				$this->load->view('header');
 				$this->load->view('sidebar');
+
+				if($level == '4' OR $level == '5'){
+					$this->load->view('v_home2');
+				}else{
+
 				$this->load->view('v_home',array(
 
 					// Hari & Tanggal
@@ -3273,6 +3280,7 @@ class home extends CI_Controller {
 					'row_tCashoutReal5' => $tCashoutReal_5
 
 				));
+			}
 				$this->load->view('footer');
 		
 		} // Penutup else S_POST

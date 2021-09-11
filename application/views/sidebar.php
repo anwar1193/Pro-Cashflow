@@ -113,8 +113,11 @@
 
 
         <li class="header">AKSES</li>
+
+        <li class="<?= $this->uri->segment(1)=='ganti_password' ? 'active' : ''; ?>"><a href="<?php echo base_url().'ganti_password' ?>"><i class="fa fa-lock"></i> <span>Ganti Password</span></a></li>
         
         <li><a href="<?php echo base_url().'login/logout' ?>"><i class="fa fa-close text-red"></i> <span>Logout</span></a></li>
+
       </ul>
     </section>
     <!-- /.sidebar -->
