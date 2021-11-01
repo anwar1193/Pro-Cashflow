@@ -163,10 +163,10 @@
                 $cashinProj5 = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE tanggal='$tanggal5' AND kode_jb='$kode_jb'")->row_array();
 
                 // Proyeksi Cash-In Total Bulan Berjalan By Kode
-                $cashinProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_jb='$kode_jb'")->row_array();
+                $cashinProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
 
                 // Realisasi Cash-In Total Bulan Berjalan By Kode
-                $cashinRealTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_jb='$kode_jb'")->row_array();
+                $cashinRealTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
                 
             ?>
 
@@ -265,11 +265,11 @@
 
                   // Proyeksi Cash-In Total Bulan Berjalan By Kode
                   $cashinProjDTotal = $this->db->query("SELECT SUM(projection) AS proyeksi FROM tbl_cashinproj
-                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_status='$kode_status'")->row_array();
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
 
                   // Realisasi Cash-In Total Bulan Berjalan By Kode
                   $cashinRealDTotal = $this->db->query("SELECT SUM(realisasi) AS realisasi FROM tbl_cashinreal
-                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_status='$kode_status'")->row_array();
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
 
               ?>
 
@@ -347,10 +347,10 @@
 
               <?php  
                 // Proyeksi Cash-In TOTAL di bulan berjalan All
-                $cashinProjGrandTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln'")->row_array();
+                $cashinProjGrandTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
 
                 // Realisasi Cash-In TOTAL di bulan berjalan All
-                $cashinRealGrandTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln'")->row_array();
+                $cashinRealGrandTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
               ?>
               
               <td style="text-align: right;"><b><?php echo number_format($row_tCashinProj1['tProjection']) ?></b></td>
@@ -410,10 +410,10 @@
                 $cashoutProj5 = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE tanggal='$tanggal5' AND kode_jb='$kode_jb'")->row_array();
 
                 // Proyeksi Cash-Out Total Bulan Berjalan By Kode
-                $cashoutProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_jb='$kode_jb'")->row_array();
+                $cashoutProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
 
                 // Realisasi Cash-Out Total Bulan Berjalan By Kode
-                $cashoutRealTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_jb='$kode_jb'")->row_array();
+                $cashoutRealTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
                 
             ?>
 
@@ -512,11 +512,11 @@
 
                   // Proyeksi Cash-In Total Bulan Berjalan By Biaya
                   $cashoutProjDTotal = $this->db->query("SELECT SUM(projection) AS proyeksi FROM tbl_cashoutproj
-                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_status='$kode_status'")->row_array();
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
 
                   // Realisasi Cash-In Total Bulan Berjalan By Biaya
                   $cashoutRealDTotal = $this->db->query("SELECT SUM(realisasi) AS realisasi FROM tbl_cashoutreal
-                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND kode_status='$kode_status'")->row_array();
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
 
               ?>
 
@@ -592,10 +592,10 @@
 
               <?php  
                 // Proyeksi Cash-Out Total Bulan Berjalan All
-                $cashoutProjGrandTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln'")->row_array();
+                $cashoutProjGrandTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
 
                 // Realisasi Cash-Out Total Bulan Berjalan All
-                $cashoutRealGrandTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln'")->row_array();
+                $cashoutRealGrandTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
               ?>
               
               <td style="text-align: right;"><b><?php echo number_format($row_tCashoutProj1['tProjection']) ?></b></td>

@@ -92,14 +92,40 @@ class Closing extends CI_Controller {
 					'status_closing' => 'Closing'
 				));
 
+				// Kirim Email Ke Direksi/Penerima.............................
+				$config = array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
+					'smtp_crypto' => 'ssl',
+					'smtp_port' => 465,
+					'smtp_user' => 'procar.cashflow@gmail.com',
+					'smtp_pass' => 'Siryu007',
+					'mailtype' => 'html',
+					'charset' => 'utf-8'
+				);
+
+				// Ambil data email di tbl_email untuk tujuan email
+				$data_email = $this->db->query("SELECT * FROM tbl_email")->result_array();
+				foreach($data_email as $row_email){
+					$to = $row_email['email'];
+					$subject = 'Pro-Cashflow >> Generate Saldo Akhir (By Finance)';
+					$pesan = 'Saldo akhir cashflow tanggal '.$tgl.' telah di generate oleh Finance Dept';
+			
+					$this->load->library('email', $config);
+					$this->email->set_newline("\r\n");
+					$this->email->from('procar.cashflow@gmail.com', 'Pro-Cashflow');
+					$this->email->to($to);
+					$this->email->subject($subject);
+					$this->email->message($pesan);
+			
+					$this->email->send();
+				}
+				// Penutup Kirim Email Ke Direksi/Penerima.....................
+
 				if($result>0){
-					$this->session->set_flashdata('pesan_sukses','
-						<div class="alert alert-info alert-dismissible" role="alert">
-						  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						  <strong>Closing Berhasil! </strong> Saldo Akhir Hari Ini Menjadi Saldo Awal Tanggal '.$tanggal_besok.'
-						</div>
-					');
-					redirect('home');
+					echo '<script>
+						alert("Generate Saldo Akhir Berhasil");window.location="index";
+					</script>';
 				}
 
 			}

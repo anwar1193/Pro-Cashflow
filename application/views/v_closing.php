@@ -34,10 +34,12 @@
                     <input type="date" class="form-control" name="tanggal">
                   </div>
 
-                  <div class="form-group">
+                  <input type="text" name="note" hidden>
+                  
+                  <!-- <div class="form-group">
                     <label for="ready_cash">Note Finance</label>
                     <textarea name="note" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
+                  </div> -->
 
                   <button class="btn btn-info" type="submit"><i class="fa fa-check"></i> Closing</button>
 
