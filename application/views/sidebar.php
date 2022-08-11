@@ -241,3 +241,44 @@
     <!-- /.modal-dialog -->
   </div>
   <!-- / Modal B2B -->
+
+
+  <!-- Modal Angsuran -->
+  <div class="modal fade" id="modal-angsuran">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Bayar Angsuran</h4>
+        </div>
+        
+        <div class="modal-footer">
+          <form method="post" action="<?php echo base_url().'angsuran_diluar_bank/paid_selected' ?>">
+            
+            <div class="form-group" style="text-align:left">
+              <label>From :</label>
+              <input class="form-control" type="date" name="tanggal_from" required>
+            </div>
+
+            <div class="form-group" style="text-align:left">
+              <label>To :</label>
+              <input class="form-control" type="date" name="tanggal_to" required>
+            </div>
+
+            <button type="button" name="closing" class="btn btn-danger pull-left" data-dismiss="modal">
+              Batalkan
+            </button>
+
+            <button type="submit" class="btn btn-success">
+              Proses
+            </button>
+          </form>
+        </div>
+        
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- / Modal Angsuran -->

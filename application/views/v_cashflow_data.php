@@ -96,7 +96,7 @@
                 // Identifikasi Dulu Saldo Akhir Hari Ke-1, Untuk rentetan hari berikutnya (Proyeksi)
               
                 // Cek Apaka Hari ini sudah ada realisasi nya (Cashin/Cashout) ?
-                $koneksi = mysqli_connect('localhost','root','','db_cashflow');
+                $koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
                 $q_cek_in = "SELECT * FROM tbl_cashinreal WHERE tanggal='$tanggal1'";
                 $q_cek_out = "SELECT * FROM tbl_cashoutreal WHERE tanggal='$tanggal1'";
 
@@ -631,7 +631,7 @@
             
 
             <tr style="background-color: orange; font-weight: bold">
-              <td><b>Saldo Akhir :</b></td>
+              <td><b>Saldo Akhir (A) :</b></td>
 
               <?php  
 
@@ -666,22 +666,17 @@
             </tr>
 
             <tr style="background-color: silver">
-              <td><b>Allocated Cash :</b></td>
+              <td><b>Allocated Cash (B) :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo1['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo2['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo3['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo4['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo5['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo1['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo2['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo3['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo4['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo5['allocated_cash'],0,'.',','); ?></td>
             </tr>
 
             <tr style="background-color: silver">
-              <td><b>Ready Cash :</b></td>
+              <td><b>Ready Cash (C) :</b></td>
               
               <?php  
                 $ready_cash1 = $salakh_real1 - $row_allo1['allocated_cash'];
@@ -691,31 +686,36 @@
                 $ready_cash5 = $salakh_proj5 - $row_allo5['allocated_cash'];
               ?>
 
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash1,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash2,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash3,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash4,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash5,0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash1,0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash2,0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash3,0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash4,0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash5,0,'.',','); ?></td>
             </tr>
 
             <tr style="background-color: #edfa7a">
-              <td><b>Kas Besar Cabang :</b></td>
+              <td><b>Kas Besar Cabang (D) :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc1['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc2['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc3['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc4['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc5['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc1['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc2['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc3['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc4['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc5['kbc'],0,'.',','); ?></td>
+            </tr>
+
+
+            <tr style="background-color: orange">
+              <td><b>Total Saldo Akhir di Bank & Cabang (E = A + D) :</b></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_real1 + $row_kbc1['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj2 + $row_kbc2['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj3 + $row_kbc3['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj4 + $row_kbc4['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj5 + $row_kbc5['kbc'],0,'.',','); ?></td>
             </tr>
             
           </table>

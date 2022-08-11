@@ -27,7 +27,7 @@ class Input_cashin extends CI_Controller {
 		$tgl = date('d-m-Y', strtotime($tanggal));
 
 		// Cek Apakah Data Sudah Ada Sebelumnya
-		$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+		$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 		$q_cek = "SELECT * FROM tbl_cashinproj WHERE status='$status' AND tanggal='$tgl'";
 		$r_cek = mysqli_query($koneksi,$q_cek) or die ('error fungsi');
 		$cek = mysqli_num_rows($r_cek);

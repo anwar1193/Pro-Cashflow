@@ -756,7 +756,7 @@
 
 
                 <div style="background-color: #fcf1b1; padding: 5px; border-radius: 5px; margin-bottom: 8px; font-weight: bold">
-                  Biaya Gaji, Kesejahteraan Karyawan dan Diklat (H2+I2+J2+K2+L2+M2)
+                  Biaya Gaji, Kesejahteraan Karyawan dan Diklat (H2+J2+K2+C4)
                 </div>
 
 
@@ -869,6 +869,44 @@
                 </div>
                 </form>
                 <!-- Penutup FORM (K2)-->
+
+
+
+                <!-- FORM (C4)-->
+                <form method="post" action="<?php echo base_url().'input_cashout/tambah' ?>">
+                <div class="row">
+
+                <!-- inputan hidden -->
+                <input type="text" name="kode_status" value="C4" hidden>
+                <input type="text" name="status" value="Biaya Pesangon" hidden>
+
+                  <div class="col-xs-4">
+                    <div class="form-group">
+                      <label>Biaya Pesangon (C4) *</label>
+                      <input type="number" name="projection" class="form-control" placeholder="(Rp)" required>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-4">
+                    <div class="form-group">
+                      <label>Tanggal *</label>
+                      <input type="date" name="tanggal" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-4">
+
+                    <button class="btn btn-success btn-sm" type="submit" name="simpan_K2" style="margin-top: 25px;">
+                      <i class="fa fa-save"></i> Simpan
+                    </button>
+
+                    <!-- <a href="http://upload-cashflow.procarfinance.com/cashout_proj.php?kode=K2&status=Biaya_Jamsostek_dan_BPJS" class="btn btn-primary btn-sm" style="margin-top: 25px;"><i class="fa fa-upload"></i> Upload</a> -->
+                    
+                  </div>
+
+                </div>
+                </form>
+                <!-- Penutup FORM (C4)-->
                 
                 
 
@@ -1071,7 +1109,7 @@
                 <!-- Penutup FORM (H3)-->
 
 
-                <!-- FORM (H3)-->
+                <!-- FORM (I3)-->
                 <form method="post" action="<?php echo base_url().'input_cashout/tambah' ?>">
                 <div class="row">
 

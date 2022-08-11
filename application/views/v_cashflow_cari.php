@@ -1,3 +1,9 @@
+<?php  
+  // 01-01-2022
+  $tgl = substr($tanggal1, 0, 2);
+  $bln = substr($tanggal1, 3, 2);
+  $thn = substr($tanggal1, 6, 4);
+?>
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -62,6 +68,7 @@
               <th colspan="2" style="text-align: center;"><?php echo $hari3 ?>, <?php echo $tanggal3; ?></th>
               <th colspan="2" style="text-align: center;"><?php echo $hari4 ?>, <?php echo $tanggal4; ?></th>
               <th colspan="2" style="text-align: center;"><?php echo $hari5 ?>, <?php echo $tanggal5; ?></th>
+              <th colspan="2" style="text-align: center;">Total (Bulan Berjalan)</th>
             </tr>
             
             <tr>
@@ -76,6 +83,10 @@
               <th style="background-color: #B3FEAD; text-align: center;">Real</th>
               <th style="background-color: #FAF330; text-align: center;">Proj</th>
               <th style="background-color: #B3FEAD; text-align: center;">Real</th>
+
+              <th style="background-color: #FAF330; text-align: center;" rowspan="3"><br>Total <br> Proyeksi</th>
+              <th style="background-color: #B3FEAD; text-align: center;" rowspan="3"><br>Total <br> Realisasi</th>
+
             </tr>
 
             <tr style="background-color: #edfa7a">
@@ -133,6 +144,12 @@
 
                 // Realisasi Cash-In Hari 5
                 $cashinReal5 = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE tanggal='$tanggal5' AND kode_jb='$kode_jb'")->row_array();
+
+                // Proyeksi Cash-In Total Bulan Berjalan By Kode
+                $cashinProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
+
+                // Realisasi Cash-In Total Bulan Berjalan By Kode
+                $cashinRealTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
                 
             ?>
 
@@ -210,6 +227,20 @@
                 <td style="text-align: right;"><?php echo number_format($cashinReal5['total_realisasi'],0, '.', ',') ?></td>
               <?php } ?>
 
+              <!-- Data Proyeksi Cashin Total Bulan Berjalan By Kode -->
+              <?php if($cashinProjTotal['total_proyeksi'] == ''){ ?>
+                <td style="text-align: right;"><?php echo '0'; ?></td>
+              <?php }else{ ?>
+                <td style="text-align: right;"><?php echo number_format($cashinProjTotal['total_proyeksi'],0, '.', ',') ?></td>
+              <?php } ?>
+              
+              <!-- Data Realisasi Cashin Total Bulan Berjalan By Kode -->
+              <?php if($cashinRealTotal['total_realisasi'] == ''){ ?>
+                <td style="text-align: right;"><?php echo '0'; ?></td>
+              <?php }else{ ?>
+                <td style="text-align: right;"><?php echo number_format($cashinRealTotal['total_realisasi'],0, '.', ',') ?></td>
+              <?php } ?>
+
             </tr>
 
               <!-- Pengulangan Sub Biaya -->
@@ -259,6 +290,14 @@
                   // Realisasi Cash-In Hari 5
                   $cashinRealD5 = $this->db->query("SELECT SUM(realisasi) AS realisasi FROM tbl_cashinreal
                   WHERE tanggal='$tanggal5' AND kode_status='$kode_status'")->row_array();
+
+                  // Proyeksi Cash-In Total Bulan Berjalan By Kode
+                  $cashinProjDTotal = $this->db->query("SELECT SUM(projection) AS proyeksi FROM tbl_cashinproj
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
+
+                  // Realisasi Cash-In Total Bulan Berjalan By Kode
+                  $cashinRealDTotal = $this->db->query("SELECT SUM(realisasi) AS realisasi FROM tbl_cashinreal
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
 
               ?>
 
@@ -335,6 +374,20 @@
                   <td style="text-align: right;"><?php echo number_format($cashinRealD5['realisasi'],0, '.', ',') ?></td>
                 <?php } ?>
 
+                <!-- Data Proyeksi Sub Cashin Total Bulan Berjalan By Biaya -->
+                <?php if($cashinProjDTotal['proyeksi'] == ''){ ?>
+                  <td style="text-align: right;"><?php echo '0'; ?></td>
+                <?php }else{ ?>
+                  <td style="text-align: right;"><?php echo number_format($cashinProjDTotal['proyeksi'],0, '.', ',') ?></td>
+                <?php } ?>
+
+                <!-- Data Realisasi Sub Cashin Total Bulan Berjalan By Biaya -->
+                <?php if($cashinRealDTotal['realisasi'] == ''){ ?>
+                  <td style="text-align: right;"><?php echo '0'; ?></td>
+                <?php }else{ ?>
+                  <td style="text-align: right;"><?php echo number_format($cashinRealDTotal['realisasi'],0, '.', ',') ?></td>
+                <?php } ?>
+
               </tr>
               
               <?php } ?>
@@ -346,6 +399,14 @@
 
             <tr style="background-color: silver; color: white">
               <td>TOTAL CASH - IN</td>
+
+              <?php  
+                // Proyeksi Cash-In TOTAL di bulan berjalan All
+                $cashinProjGrandTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
+
+                // Realisasi Cash-In TOTAL di bulan berjalan All
+                $cashinRealGrandTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
+              ?>
               
               <td style="text-align: right;"><b><?php echo number_format($row_tCashinProj1['tProjection']) ?></b></td>
               <td style="text-align: right;"><b><?php echo number_format($row_tCashinReal1['tRealisasi']) ?></b></td>
@@ -357,6 +418,11 @@
               <td style="text-align: right;"><b><?php echo number_format($row_tCashinReal4['tRealisasi']) ?></b></td>
               <td style="text-align: right;"><b><?php echo number_format($row_tCashinProj5['tProjection']) ?></b></td>
               <td style="text-align: right;"><b><?php echo number_format($row_tCashinReal5['tRealisasi']) ?></b></td>
+
+              <td style="text-align: right;"><b><?php echo number_format($cashinProjGrandTotal['total_proyeksi']) ?></b></td>
+              <td style="text-align: right;"><b><?php echo number_format($cashinRealGrandTotal['total_realisasi']) ?></b></td>
+
+
             </tr>
 
             
@@ -369,6 +435,8 @@
 
             <tr style="background-color: yellow">
               <th colspan="11">CASH-OUT</th>
+              <th style="text-align: center;">Total Proyeksi</th>
+              <th style="text-align: center; background-color: #B3FEAD;">Total Realisasi</th>
             </tr>
             
             <!-- Pengulangan Jenis Biaya -->
@@ -407,6 +475,12 @@
 
                 // Realisasi Cash-In Hari 5
                 $cashoutReal5 = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE tanggal='$tanggal5' AND kode_jb='$kode_jb'")->row_array();
+
+                // Proyeksi Cash-Out Total Bulan Berjalan By Kode
+                $cashoutProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
+
+                // Realisasi Cash-Out Total Bulan Berjalan By Kode
+                $cashoutRealTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
                 
             ?>
 
@@ -483,6 +557,20 @@
                 <td style="text-align: right;"><?php echo number_format($cashoutReal5['total_realisasi'],0, '.', ',') ?></td>
               <?php } ?>
 
+              <!-- Data Proyeksi Cashout Total Bulan Berjalan By Kode -->
+              <?php if($cashoutProjTotal['total_proyeksi'] == ''){ ?>
+                <td style="text-align: right;"><?php echo '0'; ?></td>
+              <?php }else{ ?>
+                <td style="text-align: right;"><?php echo number_format($cashoutProjTotal['total_proyeksi'],0, '.', ',') ?></td>
+              <?php } ?>
+              
+              <!-- Data Realisasi cashout Total Bulan Berjalan By Kode -->
+              <?php if($cashoutRealTotal['total_realisasi'] == ''){ ?>
+                <td style="text-align: right;"><?php echo '0'; ?></td>
+              <?php }else{ ?>
+                <td style="text-align: right;"><?php echo number_format($cashoutRealTotal['total_realisasi'],0, '.', ',') ?></td>
+              <?php } ?>
+
             </tr>
               
               <!-- Pengulangan Sub Biaya -->
@@ -532,6 +620,14 @@
                   // Realisasi Cash-In Hari 5
                   $cashoutRealD5 = $this->db->query("SELECT SUM(realisasi) AS realisasi FROM tbl_cashoutreal
                   WHERE tanggal='$tanggal5' AND kode_status='$kode_status'")->row_array();
+
+                  // Proyeksi Cash-In Total Bulan Berjalan By Biaya
+                  $cashoutProjDTotal = $this->db->query("SELECT SUM(projection) AS proyeksi FROM tbl_cashoutproj
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
+
+                  // Realisasi Cash-In Total Bulan Berjalan By Biaya
+                  $cashoutRealDTotal = $this->db->query("SELECT SUM(realisasi) AS realisasi FROM tbl_cashoutreal
+                  WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_status='$kode_status'")->row_array();
 
               ?>
 
@@ -607,6 +703,21 @@
                 <?php }else{ ?>
                   <td style="text-align: right;"><?php echo number_format($cashoutRealD5['realisasi'],0, '.', ',') ?></td>
                 <?php } ?>
+
+                <!-- Data Proyeksi Sub cashout Total Bulan Berjalan By Biaya -->
+                <?php if($cashoutProjDTotal['proyeksi'] == ''){ ?>
+                  <td style="text-align: right;"><?php echo '0'; ?></td>
+                <?php }else{ ?>
+                  <td style="text-align: right;"><?php echo number_format($cashoutProjDTotal['proyeksi'],0, '.', ',') ?></td>
+                <?php } ?>
+
+                <!-- Data Realisasi Sub cashout Total Bulan Berjalan By Biaya -->
+                <?php if($cashoutRealDTotal['realisasi'] == ''){ ?>
+                  <td style="text-align: right;"><?php echo '0'; ?></td>
+                <?php }else{ ?>
+                  <td style="text-align: right;"><?php echo number_format($cashoutRealDTotal['realisasi'],0, '.', ',') ?></td>
+                <?php } ?>
+
               </tr>
 
               <?php } ?>
@@ -616,6 +727,14 @@
 
             <tr style="background-color: silver; color: white">
               <td>TOTAL CASH - OUT</td>
+
+              <?php  
+                // Proyeksi Cash-Out Total Bulan Berjalan All
+                $cashoutProjGrandTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
+
+                // Realisasi Cash-Out Total Bulan Berjalan All
+                $cashoutRealGrandTotal = $this->db->query("SELECT SUM(realisasi) AS total_realisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn'")->row_array();
+              ?>
               
               <td style="text-align: right;"><b><?php echo number_format($row_tCashoutProj1['tProjection']) ?></b></td>
               <td style="text-align: right;"><b><?php echo number_format($row_tCashoutReal1['tRealisasi']) ?></b></td>
@@ -627,6 +746,9 @@
               <td style="text-align: right;"><b><?php echo number_format($row_tCashoutReal4['tRealisasi']) ?></b></td>
               <td style="text-align: right;"><b><?php echo number_format($row_tCashoutProj5['tProjection']) ?></b></td>
               <td style="text-align: right;"><b><?php echo number_format($row_tCashoutReal5['tRealisasi']) ?></b></td>
+
+              <td style="text-align: right;"><b><?php echo number_format($cashoutProjGrandTotal['total_proyeksi']) ?></b></td>
+              <td style="text-align: right;"><b><?php echo number_format($cashoutRealGrandTotal['total_realisasi']) ?></b></td>
             </tr>
 
             <tr style="background-color: #bef05b">
@@ -645,8 +767,8 @@
             </tr>
             
 
-            <tr style="background-color: #edfa7a">
-              <td><b>Saldo Akhir :</b></td>
+            <tr style="background-color: orange">
+              <td><b>Saldo Akhir (A) :</b></td>
 
               <?php  
 
@@ -679,49 +801,48 @@
               <td style="text-align: right;"><?php echo number_format($salakh_real5,0,'.',',') ?></td>
             </tr>
 
-            <tr style="background-color: #edfa7a">
-              <td><b>Allocated Cash :</b></td>
+            <tr style="background-color: silver">
+              <td><b>Allocated Cash (B) :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo1['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo2['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo3['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo4['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo5['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo1['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo2['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo3['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo4['allocated_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo5['allocated_cash'],0,'.',','); ?></td>
+            </tr>
+
+            <tr style="background-color: silver">
+              <td><b>Ready Cash (C) :</b></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_read1['ready_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_read2['ready_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_read3['ready_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_read4['ready_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_read5['ready_cash'],0,'.',','); ?></td>
             </tr>
 
             <tr style="background-color: #edfa7a">
-              <td><b>Ready Cash :</b></td>
+              <td><b>Kas Besar Cabang (D) :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_read1['ready_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_read2['ready_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_read3['ready_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_read4['ready_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_read5['ready_cash'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc1['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc2['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc3['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc4['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc5['kbc'],0,'.',','); ?></td>
             </tr>
 
-            <tr style="background-color: #edfa7a">
-              <td><b>Kas Besar Cabang :</b></td>
+            <tr style="background-color: orange">
+              <td><b>Total Saldo Akhir di Bank & Cabang (E = A + D) :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc1['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc2['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc3['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc4['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc5['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_real1 + $row_kbc1['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj2 + $row_kbc2['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj3 + $row_kbc3['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj4 + $row_kbc4['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj5 + $row_kbc5['kbc'],0,'.',','); ?></td>
             </tr>
             
           </table>

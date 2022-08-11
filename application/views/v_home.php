@@ -189,7 +189,7 @@
                 // Identifikasi Dulu Saldo Akhir Hari Ke-1, Untuk rentetan hari berikutnya (Proyeksi)
 
                 // Cek Apaka Hari ini sudah ada realisasi nya (Cashin/Cashout) ?
-                $koneksi = mysqli_connect('localhost','root','','db_cashflow');
+                $koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
                 $q_cek_in = "SELECT * FROM tbl_cashinreal WHERE tanggal='$tanggal1'";
                 $q_cek_out = "SELECT * FROM tbl_cashoutreal WHERE tanggal='$tanggal1'";
 
@@ -256,7 +256,7 @@
                 // Proyeksi Cash-In Hari 5
                 $cashinProj5 = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE tanggal='$tanggal5' AND kode_jb='$kode_jb'")->row_array();
 
-                // ...................................................................................................
+                // ....................................................................................................
 
                 // Proyeksi Cash-In TOTAL di bulan berjalan per kategori biaya
                 $cashinProjTotal = $this->db->query("SELECT SUM(projection) AS total_proyeksi FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE SUBSTR(tanggal, 4,2)='$bln' AND SUBSTR(tanggal, 7,4)='$thn' AND kode_jb='$kode_jb'")->row_array();
@@ -321,16 +321,16 @@
 
               <!-- Data Proyeksi Cashin Total Bulan Berjalan -->
               <?php if($cashinProjTotal['total_proyeksi'] == ''){ ?>
-                <td style="text-align: right;"><?php echo '0'; ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo '0'; ?></td>
               <?php }else{ ?>
-                <td style="text-align: right;"><?php echo number_format($cashinProjTotal['total_proyeksi'],0, '.', ',') ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo number_format($cashinProjTotal['total_proyeksi'],0, '.', ',') ?></td>
               <?php } ?>
               
               <!-- Data Realisasi Cashin Total Bulan Berjalan -->
               <?php if($cashinRealTotal['total_realisasi'] == ''){ ?>
-                <td style="text-align: right;"><?php echo '0'; ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo '0'; ?></td>
               <?php }else{ ?>
-                <td style="text-align: right;"><?php echo number_format($cashinRealTotal['total_realisasi'],0, '.', ',') ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo number_format($cashinRealTotal['total_realisasi'],0, '.', ',') ?></td>
               <?php } ?>
               
             </tr>
@@ -352,8 +352,8 @@
               
               <td style="text-align: right;" colspan="2"><b><?php echo number_format($row_tCashinProj5['tProjection']) ?></b></td>
 
-              <td style="text-align: right;"><b><?php echo number_format($cashinProjGrandTotal['total_proyeksi']) ?></b></td>
-              <td style="text-align: right;"><b><?php echo number_format($cashinRealGrandTotal['total_realisasi']) ?></b></td>
+              <td style="text-align: right; font-weight:bold;"><b><?php echo number_format($cashinProjGrandTotal['total_proyeksi']) ?></b></td>
+              <td style="text-align: right; font-weight:bold;"><b><?php echo number_format($cashinRealGrandTotal['total_realisasi']) ?></b></td>
               
             </tr>
 
@@ -460,16 +460,16 @@
 
               <!-- Data Proyeksi Cashout Total Bulan Berjalan Berdasarkan Kode Jenis Biaya -->
               <?php if($cashoutProjTotal['total_proyeksi'] == ''){ ?>
-                <td style="text-align: right;"><?php echo '0'; ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo '0'; ?></td>
               <?php }else{ ?>
-                <td style="text-align: right;"><?php echo number_format($cashoutProjTotal['total_proyeksi'],0, '.', ',') ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo number_format($cashoutProjTotal['total_proyeksi'],0, '.', ',') ?></td>
               <?php } ?>
               
               <!-- Data Realisasi cashout Total Bulan Berjalan Berdasarkan Kode Jenis Biaya -->
               <?php if($cashoutRealTotal['total_realisasi'] == ''){ ?>
-                <td style="text-align: right;"><?php echo '0'; ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo '0'; ?></td>
               <?php }else{ ?>
-                <td style="text-align: right;"><?php echo number_format($cashoutRealTotal['total_realisasi'],0, '.', ',') ?></td>
+                <td style="text-align: right; font-weight:bold;"><?php echo number_format($cashoutRealTotal['total_realisasi'],0, '.', ',') ?></td>
               <?php } ?>
           
             </tr>
@@ -490,8 +490,8 @@
               
               <td style="text-align: right;" colspan="2"><b><?php echo number_format($row_tCashoutProj5['tProjection']) ?></b></td>
 
-              <td style="text-align: right;"><b><?php echo number_format($cashoutProjGrandTotal['total_proyeksi']) ?></b></td>
-              <td style="text-align: right;"><b><?php echo number_format($cashoutRealGrandTotal['total_realisasi']) ?></b></td>
+              <td style="text-align: right; font-weight:bold;"><b><?php echo number_format($cashoutProjGrandTotal['total_proyeksi']) ?></b></td>
+              <td style="text-align: right; font-weight:bold;"><b><?php echo number_format($cashoutRealGrandTotal['total_realisasi']) ?></b></td>
               
             </tr>
 
@@ -512,7 +512,7 @@
             
 
             <tr style="background-color: orange; font-weight: bold">
-              <td><b>Saldo Akhir :</b></td>
+              <td><b>Saldo Akhir (A) :</b></td>
 
               <?php  
 
@@ -547,22 +547,22 @@
             </tr>
 
             <tr style="background-color: silver">
-              <td><b>Allocated Cash :</b></td>
+              <td><b>Allocated Cash (B) :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo1['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo2['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo3['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo4['allocated_cash'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_allo5['allocated_cash'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo1['allocated_cash'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo2['allocated_cash'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo3['allocated_cash'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo4['allocated_cash'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_allo5['allocated_cash'],0,'.',','); ?></td>
             </tr>
 
             <tr style="background-color: silver">
-              <td><b>Ready Cash :</b></td>
+              <td><b>Ready Cash (C) :</b></td>
               
               <?php  
                 $ready_cash1 = $salakh_real1 - $row_allo1['allocated_cash'];
@@ -572,35 +572,51 @@
                 $ready_cash5 = $salakh_proj5 - $row_allo5['allocated_cash'];
               ?>
 
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash1,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash2,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash3,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash4,0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($ready_cash5,0,'.',','); ?></td>
-            </tr>
-
-            <tr style="background-color: #edfa7a">
-              <td><b>Kas Besar Cabang :</b></td>
               
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc1['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc2['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc3['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc4['kbc'],0,'.',','); ?></td>
-              <td></td>
-              <td style="text-align: right"><?php echo number_format($row_kbc5['kbc'],0,'.',','); ?></td>
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash1,0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash2,0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash3,0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash4,0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($ready_cash5,0,'.',','); ?></td>
             </tr>
 
             <tr style="background-color: #edfa7a">
-              <td><b>Deposito :</b></td>
+              <td><b>Kas Besar Cabang (D) :</b></td>
+              
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc1['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc2['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc3['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc4['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($row_kbc5['kbc'],0,'.',','); ?></td>
+            </tr>
+
+
+            <tr style="background-color: orange">
+              <td><b>Total Saldo Akhir di Bank & Cabang (E = A + D) :</b></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_real1 + $row_kbc1['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj2 + $row_kbc2['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj3 + $row_kbc3['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj4 + $row_kbc4['kbc'],0,'.',','); ?></td>
+              
+              <td style="text-align: right" colspan="2"><?php echo number_format($salakh_proj5 + $row_kbc5['kbc'],0,'.',','); ?></td>
+            </tr>
+
+
+            <tr style="background-color: #edfa7a">
+              <td><b>Deposito (F) :</b></td>
               
               <td colspan="2" style="text-align: right">
                 <?php echo number_format($row_deposito['deposito'],0,'.',','); ?>
@@ -626,7 +642,7 @@
 
 
             <tr style="background-color: #edfa7a">
-              <td><b>Rekening Back to Back :</b></td>
+              <td><b>Rekening Back to Back (G) :</b></td>
               
               <td colspan="2" style="text-align: right">
                 <?php echo number_format($row_b2b['b2b'],0,'.',','); ?>
@@ -652,7 +668,7 @@
 
 
             <tr style="background-color: orange; font-weight: bold">
-              <td><b>Total Kas & Setara Kas :</b></td>
+              <td><b>Total Kas & Setara Kas (H = E + F + G) :</b></td>
 
               <?php  
 

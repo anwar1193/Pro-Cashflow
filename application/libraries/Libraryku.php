@@ -9,7 +9,10 @@ Class Libraryku{
 
 	function tampil_user(){
 		$this->ci->load->model('m_login');
-		$id = $this->ci->session->userdata('id');
+		$sess_var = $this->ci->session->userdata('login_procashflow');
+
+		$id = $sess_var['id'];
+
 		$user_data = $this->ci->m_login->ambil_user($id)->row();
 		return $user_data;
 	}

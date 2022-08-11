@@ -21,7 +21,7 @@
          <!-- Data Cashflow Bulanan -->
           <?php 
   // include 'koneksi.php';
-  $koneksi = mysqli_connect('localhost','root','','db_cashflow') or die (mysqli_error($koneksi));
+  $koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow') or die (mysqli_error($koneksi));
 
   
 ?>

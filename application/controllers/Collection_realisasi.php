@@ -27,7 +27,7 @@ class Collection_realisasi extends CI_Controller {
 		$tgl = date('d-m-Y', strtotime($tanggal));
 		$realisasi = $this->input->post('realisasi');
 
-		$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+		$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 
 		// Cek Apakah Sudah Ada Proyeksinya
 		$qcek_proj = "SELECT * FROM tbl_cashinproj WHERE status='$status' AND tanggal='$tgl'";

@@ -31,6 +31,8 @@
 <body class="hold-transition login-page" style="background-color: #FDC651">
 <div class="login-box">
   <div class="login-logo">
+    <img src="<?php echo base_url().'asset/' ?>dist/img/procar.png" alt="AdminLTE Logo" class="brand-image img-rounded elevation-3" style="opacity: .7" width="100px"> <br>
+
     <a href="<?php echo base_url().'asset' ?>/index2.html"><b>Pro-</b>CashFlow</a>
   </div>
   <!-- /.login-logo -->
@@ -46,8 +48,15 @@
       </div>
 
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <input type="password" class="form-control" name="password" placeholder="Password" id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <label class="checkbox-wrap checkbox-primary mb-0">
+          <input type="checkbox" id="show_password">
+          <span class="checkmark"></span> Show Password
+        </label>
       </div>
 
       <div class="row">
@@ -71,7 +80,7 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url().'asset' ?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="<?php echo base_url().'asset' ?>/plugins/iCheck/icheck.min.js"></script>
+<!-- <script src="<?php echo base_url().'asset' ?>/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -79,6 +88,21 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' /* optional */
     });
+  });
+</script> -->
+
+<!-- Script Show Password -->
+<script>
+  $(document).ready(function(){
+
+    $('#show_password').click(function(){
+      if($(this).is(':checked')){
+        $('#password').attr('type','text');
+      }else{
+        $('#password').attr('type', 'password');
+      }
+    });
+
   });
 </script>
 </body>

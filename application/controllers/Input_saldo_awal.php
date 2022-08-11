@@ -41,7 +41,7 @@ class Input_saldo_awal extends CI_Controller {
 		}else{ // jika data sudah diisi
 
 			// Cek Apakah Data Sudah Ada Sebelumnya
-			$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+			$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 			$q_cek = "SELECT * FROM tbl_saldo_awal WHERE tanggal='$tanggal'";
 			$r_cek = mysqli_query($koneksi,$q_cek) or die ('error fungsi');
 			$cek = mysqli_num_rows($r_cek);

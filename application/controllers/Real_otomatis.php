@@ -39,7 +39,7 @@ class Real_otomatis extends CI_Controller {
 
 			// Update Status Bayar Di Pro-Biaya
 			$tanggal_biaya = date('Y-m-d',strtotime($tgl));
-			$con_biaya = mysqli_connect('localhost','root','','db_probiaya');
+			$con_biaya = mysqli_connect('localhost','root','Profi@123','db_probiaya');
 
 			$quer_biaya = "UPDATE tbl_pengajuan SET status_bayar='Telah Dibayar' WHERE kode_cashflow='$kode_status' AND tanggal_bayar='$tanggal_biaya' AND status_bayar='Proses Bayar'";
 			

@@ -26,7 +26,7 @@ class Input_cashout_real extends CI_Controller {
 		$tgl = date('d-m-Y', strtotime($tanggal));
 		$realisasi = $this->input->post('realisasi');
 
-		$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+		$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 
 		// Cek Apakah Sudah Ada Proyeksinya
 		$qcek_proj = "SELECT * FROM tbl_cashoutproj WHERE status='$status' AND tanggal='$tgl'";

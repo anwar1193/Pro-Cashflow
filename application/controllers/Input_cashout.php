@@ -27,7 +27,7 @@ class Input_cashout extends CI_Controller {
 		$projection = $this->input->post('projection');
 
 		// Cek Apakah Data Sudah Ada Sebelumnya
-		$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+		$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 		$q_cek = "SELECT * FROM tbl_cashoutproj WHERE status='$status' AND tanggal='$tgl'";
 		$r_cek = mysqli_query($koneksi,$q_cek) or die ('error fungsi');
 		$cek = mysqli_num_rows($r_cek);

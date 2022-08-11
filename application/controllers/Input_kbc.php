@@ -39,7 +39,7 @@ class input_kbc extends CI_Controller {
 		}else{ // Jika Data Diisi Semua
 
 			// Cek Apakah Data Sudah Ada di Database
-			$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+			$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 			$q_cek = "SELECT * FROM tbl_kbc WHERE tanggal='$tanggal'";
 			$r_cek = mysqli_query($koneksi,$q_cek) or die ('error fungsi');
 			$cek = mysqli_num_rows($r_cek);

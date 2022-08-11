@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model(array('m_login'));
 		$this->load->helper('helperku');
+		$this->load->library('libraryku');
 	}
 
 	public function index()
@@ -31,7 +32,7 @@ class Login extends CI_Controller {
 				'nama' => $row->nama
 			);
 
-			$this->session->set_userdata($params);
+			$this->session->set_userdata('login_procashflow', $params);
 			$this->session->set_flashdata('pesan_sukses','
 				<div class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -55,7 +56,7 @@ class Login extends CI_Controller {
 
 	public function logout(){
 		$params = array('id','level');
-		$this->session->unset_userdata($params);
+		$this->session->unset_userdata('login_procashflow', $params);
 		redirect('login/index');
 	}
 }

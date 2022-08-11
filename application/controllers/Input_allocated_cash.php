@@ -40,7 +40,7 @@ class input_allocated_cash extends CI_Controller {
 		}else{ // Jika Data Diisi
 
 			// Cek Apakah Data Sudah Ada Sebelumnya
-			$koneksi = mysqli_connect('localhost','root','','db_cashflow');
+			$koneksi = mysqli_connect('localhost','root','Profi@123','db_cashflow');
 			$q_cek = "SELECT * FROM tbl_allocated_cash WHERE tanggal='$tanggal'";
 			$r_cek = mysqli_query($koneksi,$q_cek) or die ('error fungsi');
 			$cek = mysqli_num_rows($r_cek);
