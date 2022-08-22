@@ -172,8 +172,8 @@
                 <div class="col-md-12">
                     <table class="table">
                         <thead>
-                            <tr class="bg-warning">
-                                <th colspan="12">Table Angsuran</th>
+                            <tr class="bg-success">
+                                <th colspan="13">Table Angsuran</th>
                             </tr>
 
                             <tr>
@@ -188,6 +188,7 @@
                                 <th>OS Intersest</th>
                                 <th>OS Receivable</th>
                                 <th>Interest Adjst</th>
+                                <th>Payment Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -206,6 +207,7 @@
                                 <td><?= number_format($row['os_interest'], 2, '.', ',') ?></td>
                                 <td><?= number_format($row['os_receivable'], 2, '.', ',') ?></td>
                                 <td><?= number_format($row['interest_adjst'], 2, '.', ',') ?></td>
+                                <td class="text-center"><?= $row['payment_status'] == 1 ? 'Paid' : 'Belum'; ?></td>
                                 <td>
                                     <?php if($row['paid_amount'] == 0){ ?>
                                         <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-paid" id="pilih-paid"

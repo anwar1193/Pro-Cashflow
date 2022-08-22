@@ -68,7 +68,8 @@ class Angsuran_diluar_bank extends CI_Controller {
 
         $result = $this->db->update('tbl_angsuranluarbank_detail', array(
             'paid_amount' => $this->input->post('installment'),
-            'paid_date' => date('Y-m-d', strtotime($this->input->post('paid_date')))
+            'paid_date' => date('Y-m-d', strtotime($this->input->post('paid_date'))),
+            'payment_status' => 1
         ), array('id' => $id));
 
         if($result){
@@ -95,7 +96,9 @@ class Angsuran_diluar_bank extends CI_Controller {
                                             tbl_angsuranluarbank_detail.interest as interest,
                                             tbl_angsuranluarbank_detail.installment as installment,
                                             tbl_angsuranluarbank_detail.paid_amount as paid_amount
-                                            FROM tbl_angsuranluarbank_detail INNER JOIN tbl_angsuranluarbank USING(contract_no) WHERE tbl_angsuranluarbank_detail.due_date BETWEEN '$tanggal_from' AND '$tanggal_to'")->result_array();
+                                            FROM tbl_angsuranluarbank_detail INNER JOIN tbl_angsuranluarbank USING(contract_no) WHERE tbl_angsuranluarbank_detail.due_date BETWEEN '$tanggal_from' AND '$tanggal_to' AND
+                                            tbl_angsuranluarbank_detail.payment_status != 1
+                                            ")->result_array();
 
         $this->load->view('header');
 		$this->load->view('sidebar');
@@ -121,7 +124,8 @@ class Angsuran_diluar_bank extends CI_Controller {
 
         $result = $this->db->update('tbl_angsuranluarbank_detail', array(
             'paid_amount' => $this->input->post('installment'),
-            'paid_date' => date('Y-m-d', strtotime($this->input->post('paid_date')))
+            'paid_date' => date('Y-m-d', strtotime($this->input->post('paid_date'))),
+            'payment_status' => 1
         ), array('id' => $id));
 
         if($result){
@@ -130,6 +134,31 @@ class Angsuran_diluar_bank extends CI_Controller {
             </script>';
 
         }
+    }
+
+    public function proses_paid_selected_check()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $id = $this->input->post('id');
+        $tanggal_from = $this->input->post('tanggal_from');
+        $tanggal_to = $this->input->post('tanggal_to');
+
+        // Untuk link supaya kembali ke halaman sebelumnya
+        $tanggal_from_link = str_replace('-', '_', $tanggal_from);
+        $tanggal_to_link = str_replace('-', '_', $tanggal_to);
+
+        for($i=0; $i<sizeof($id); $i++){
+            $this->db->update('tbl_angsuranluarbank_detail', array(
+                'paid_date' => date('Y-m-d', strtotime($this->input->post('paid_date'))),
+                'payment_status' => 1
+            ), array('id' => $id[$i]));
+
+            $this->db->query("UPDATE tbl_angsuranluarbank_detail SET paid_amount=installment WHERE id=$id[$i]");
+        }
+
+        echo '<script>
+                alert("Proses Paid Berhasil!");window.location="paid_selected_after/'.$tanggal_from_link.'/'.$tanggal_to_link.'";
+            </script>';
     }
 
     public function paid_selected_after($tanggal_form_link, $tanggal_to_link)
@@ -148,7 +177,9 @@ class Angsuran_diluar_bank extends CI_Controller {
                                             tbl_angsuranluarbank_detail.interest as interest,
                                             tbl_angsuranluarbank_detail.installment as installment,
                                             tbl_angsuranluarbank_detail.paid_amount as paid_amount
-                                            FROM tbl_angsuranluarbank_detail INNER JOIN tbl_angsuranluarbank USING(contract_no) WHERE tbl_angsuranluarbank_detail.due_date BETWEEN '$tanggal_from' AND '$tanggal_to'")->result_array();
+                                            FROM tbl_angsuranluarbank_detail INNER JOIN tbl_angsuranluarbank USING(contract_no) WHERE tbl_angsuranluarbank_detail.due_date BETWEEN '$tanggal_from' AND '$tanggal_to' AND
+                                            tbl_angsuranluarbank_detail.payment_status != 1
+                                            ")->result_array();
 
         $this->load->view('header');
 		$this->load->view('sidebar');

@@ -44,10 +44,15 @@
               <!-- Data Angsuran -->
               <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-bordered">
+                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-paidSelected">
+                        <i class="fa fa-dollar"></i> Paid Selected Item
+                    </a>
+
+                    <table class="table table-bordered mt-2">
                         <thead>
                             <tr style="background-color:black; color:white">
                                 <th class="text-center">No</th>
+                                <th class="text-center">Select</th>
                                 <th class="text-center">Contract No</th>
                                 <th class="text-center">Bank Group</th>
                                 <th class="text-center">Bank Name</th>
@@ -60,6 +65,7 @@
                             </tr>
                         </thead>
 
+                        <form method="post" action="<?php echo base_url().'angsuran_diluar_bank/proses_paid_selected_check' ?>">
                         <tbody>
                             <!-- Jika Ada Data -->
                             <?php if(count($data_angsuran) > 0){ ?> 
@@ -70,6 +76,11 @@
                                 ?>
                                 <tr>
                                     <td class="text-center"><?= $no++; ?></td>
+
+                                    <td class="text-center">
+                                      <input type="checkbox" name="id[]" value="<?php echo $row['id'] ?>">
+                                    </td>
+
                                     <td class="text-center"><?= $row['contract_no']; ?></td>
                                     <td class="text-center"><?= $row['bank_group']; ?></td>
                                     <td class="text-center"><?= $row['bank_name']; ?></td>
@@ -106,6 +117,38 @@
                                 </tr>
                             <?php } ?>
                         </tbody>
+
+                        <!-- Modal Paid Selected -->
+                        <div class="modal fade" id="modal-paidSelected" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Paid Selected Item</h4>
+                              </div>
+                              <div class="modal-body">
+                                    <input type="date" name="tanggal_from" value="<?php echo $tanggal_from ?>" hidden>
+                                    <input type="date" name="tanggal_to" value="<?php echo $tanggal_to ?>" hidden>
+
+                                    <div class="form-group">
+                                        <label>Paid Date</label>
+                                        <input type="date" class="form-control" name="paid_date" required>
+                                    </div>
+
+                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Paid</button>
+
+                              </div>
+                              <!-- <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                        <!-- END Modal Paid Selected -->
+
+                        </form>
                     </table>
                 </div>
               </div>
