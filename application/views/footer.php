@@ -231,6 +231,7 @@
     $('.sidebar-menu').tree();
 
     $('#tableDT').DataTable();
+    $('#tableDT2').DataTable();
   })
 </script>
 </body>
