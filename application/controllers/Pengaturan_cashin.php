@@ -20,7 +20,8 @@ class Pengaturan_cashin extends CI_Controller {
 		$data_cashin_sub = $this->db->query("SELECT  
                                                 tbl_sb_cashin.id_sb,    
                                                 tbl_sb_cashin.kode_status,    
-                                                tbl_sb_cashin.status,    
+                                                tbl_sb_cashin.status,
+                                                tbl_sb_cashin.status_aktif,
                                                 tbl_jb_cashin.kode_jb AS kode_jb,
                                                 tbl_jb_cashin.nama_jb
                                             FROM 
@@ -194,6 +195,41 @@ class Pengaturan_cashin extends CI_Controller {
 		}
 	}
 
-    // Tinggal Bikin Delete & Aktif-Nonaktif
+    
+    public function hapus_cashin_sub($id){
+        $result = $this->db->delete('tbl_sb_cashin', array('id_sb' => $id));
+		if($result > 0){
+			$this->session->set_flashdata('pesan_sukses','
+				<div class="alert alert-danger alert-dismissible" role="alert">
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				  <strong>Data Sub-Item Cash-In Berhasil Dihapus</strong>
+				</div>
+			');
+
+			redirect('pengaturan_cashin');
+		}
+	}
+
+
+    public function nonaktifkan_cashin_sub($id){
+        $result = $this->db->update('tbl_sb_cashin', array(
+            'status_aktif' => 0
+        ), array('id_sb' => $id));
+
+        if($result > 0){
+            echo '<script>alert("Sub-Item CashIn Berhasil Di Non-Aktifkan");window.location="../index"</script>';
+        }
+    }
+
+
+    public function aktifkan_cashin_sub($id){
+        $result = $this->db->update('tbl_sb_cashin', array(
+            'status_aktif' => 1
+        ), array('id_sb' => $id));
+
+        if($result > 0){
+            echo '<script>alert("Sub-Item CashIn Berhasil Di Aktifkan");window.location="../index"</script>';
+        }
+    }
 
 }

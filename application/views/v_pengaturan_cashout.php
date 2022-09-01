@@ -24,10 +24,10 @@
         <!-- Box Projection -->
         <div class="col-sm-12">
           
-          <!-- Cashin Item -->
+          <!-- Cashout Item -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Pengaturan Cash-In Item</h3>
+              <h3 class="box-title">Pengaturan Cash-Out Item</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -40,8 +40,8 @@
 
             <div class="box-body table-responsive">
 
-              <a href="<?php echo base_url().'pengaturan_cashin/tambah_cashin' ?>" class="btn btn-success btn-sm" style="align-content: right;">
-                <i class="fa fa-plus"></i> Tambah Cash-In Item
+              <a href="<?php echo base_url().'pengaturan_cashout/tambah_cashout' ?>" class="btn btn-success btn-sm" style="align-content: right;">
+                <i class="fa fa-plus"></i> Tambah Cash-Out Item
               </a>
 
               <br><br>
@@ -51,8 +51,8 @@
 
               		<tr style="background-color:black; color:white; font-weight:bold">
               			<th>NO</th>
-              			<th>Kode Cash-In</th>
-              			<th>Cash-In</th>
+              			<th>Kode Cash-Out</th>
+              			<th>Cash-Out</th>
               			<th style="text-align: center;">Action</th>
               		</tr>
 
@@ -62,20 +62,20 @@
               	<tbody>
               		<?php 
               			$no=1;
-              			foreach($data_cashin as $row_cashin){
+              			foreach($data_cashout as $row_cashout){
               		?>
 
               		<tr>
               			<td><?php echo $no++; ?></td>
-              			<td><?php echo $row_cashin['kode_jb']; ?></td>
-              			<td><?php echo $row_cashin['nama_jb']; ?></td>
+              			<td><?php echo $row_cashout['kode_jb']; ?></td>
+              			<td><?php echo $row_cashout['nama_jb']; ?></td>
               			<td style="text-align: center;">
 
-                            <a class="btn btn-info btn-xs" href="<?php echo base_url().'pengaturan_cashin/edit_cashin/'.$row_cashin['id_jb'] ?>">
+                            <a class="btn btn-info btn-xs" href="<?php echo base_url().'pengaturan_cashout/edit_cashout/'.$row_cashout['id_jb'] ?>">
                                 <i class="fa fa-edit"></i> Edit
                             </a>
 
-                            <a class="btn btn-danger btn-xs" href="<?php echo base_url().'pengaturan_cashin/hapus_cashin/'.$row_cashin['id_jb'] ?>" onclick="return confirm('Apakah Anda Yakin?')">
+                            <a class="btn btn-danger btn-xs" href="<?php echo base_url().'pengaturan_cashout/hapus_cashout/'.$row_cashout['id_jb'] ?>" onclick="return confirm('Apakah Anda Yakin?')">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
 
@@ -88,18 +88,18 @@
               	</tbody>
               </table>
 
-              <!-- Penutup Tampilan Hasil Inputan Cashin Projection -->
+              <!-- Penutup Tampilan Hasil Inputan Cashout Projection -->
 
             </div>
             <!-- /.box-body -->
             
           </div>
-          <!-- END Cashin Item -->
+          <!-- END Cashout Item -->
 
-          <!-- Cashin Sub Item -->
+          <!-- Cashout Sub Item -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Pengaturan Cash-In Sub-Item</h3>
+              <h3 class="box-title">Pengaturan Cash-Out Sub-Item</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -112,8 +112,8 @@
 
             <div class="box-body table-responsive">
 
-              <a href="<?php echo base_url().'pengaturan_cashin/tambah_cashin_sub' ?>" class="btn btn-success btn-sm" style="align-content: right;">
-                <i class="fa fa-plus"></i> Tambah Cash-In Sub-Item
+              <a href="<?php echo base_url().'pengaturan_cashout/tambah_cashout_sub' ?>" class="btn btn-success btn-sm" style="align-content: right;">
+                <i class="fa fa-plus"></i> Tambah Cash-Out Sub-Item
               </a>
 
               <br><br>
@@ -123,9 +123,9 @@
 
               		<tr style="background-color:black; color:white; font-weight:bold">
               			<th>NO</th>
-              			<th>Kode Sub Cash-In</th>
-              			<th>Sub Cash-In</th>
-              			<th>Kode Cash-In</th>
+              			<th>Kode Sub Cash-Out</th>
+              			<th>Sub Cash-Out</th>
+              			<th>Kode Cash-Out</th>
               			<th>Status Aktif</th>
               			<th style="text-align: center;">Action</th>
               		</tr>
@@ -136,36 +136,36 @@
               	<tbody>
               		<?php 
               			$no=1;
-              			foreach($data_cashin_sub as $row_cashin){
+              			foreach($data_cashout_sub as $row_cashout){
               		?>
 
               		<tr style="vertical-align: middle">
               			<td style="vertical-align:middle"><?php echo $no++; ?></td>
-              			<td style="vertical-align:middle"><?php echo $row_cashin['kode_status']; ?></td>
-              			<td style="vertical-align:middle"><?php echo $row_cashin['status']; ?></td>
-              			<td style="vertical-align:middle"><?php echo $row_cashin['kode_jb'].' - '.$row_cashin['nama_jb']; ?></td>
+              			<td style="vertical-align:middle"><?php echo $row_cashout['kode_status']; ?></td>
+              			<td style="vertical-align:middle"><?php echo $row_cashout['status']; ?></td>
+              			<td style="vertical-align:middle"><?php echo $row_cashout['kode_jb'].' - '.$row_cashout['nama_jb']; ?></td>
                     <td style="vertical-align:middle">
                       <?php  
-                          if($row_cashin['status_aktif'] == 1){ 
+                          if($row_cashout['status_aktif'] == 1){ 
                       ?>
                         <i class="fa fa-check-circle text-success"></i> Aktif <br>
-                        <a href="<?php echo base_url().'pengaturan_cashin/nonaktifkan_cashin_sub/'.$row_cashin['id_sb'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin?')">
+                        <a href="<?php echo base_url().'pengaturan_cashout/nonaktifkan_cashout_sub/'.$row_cashout['id_sb'] ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin?')">
                             <i class="fa fa-times"></i> Nonaktifkan
                         </a>
                       <?php }else{ ?>
                         <i class="fa fa-times text-danger"></i> Non-Aktif <br>
-                        <a href="<?php echo base_url().'pengaturan_cashin/aktifkan_cashin_sub/'.$row_cashin['id_sb'] ?>" class="btn btn-success btn-xs" onclick="return confirm('Apakah anda yakin?')">
+                        <a href="<?php echo base_url().'pengaturan_cashout/aktifkan_cashout_sub/'.$row_cashout['id_sb'] ?>" class="btn btn-success btn-xs" onclick="return confirm('Apakah anda yakin?')">
                             <i class="fa fa-check"></i> Aktifkan
                         </a>
                       <?php } ?>  
                     </td>
               			<td style="text-align: center; vertical-align:middle">
 
-                            <a class="btn btn-info btn-xs" href="<?php echo base_url().'pengaturan_cashin/edit_cashin_sub/'.$row_cashin['id_sb'] ?>">
+                            <a class="btn btn-info btn-xs" href="<?php echo base_url().'pengaturan_cashout/edit_cashout_sub/'.$row_cashout['id_sb'] ?>">
                                 <i class="fa fa-edit"></i> Edit
                             </a>
 
-                            <a class="btn btn-danger btn-xs" href="<?php echo base_url().'pengaturan_cashin/hapus_cashin_sub/'.$row_cashin['id_sb'] ?>" onclick="return confirm('Apakah Anda Yakin?')">
+                            <a class="btn btn-danger btn-xs" href="<?php echo base_url().'pengaturan_cashout/hapus_cashout_sub/'.$row_cashout['id_sb'] ?>" onclick="return confirm('Apakah Anda Yakin?')">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
 
@@ -178,13 +178,13 @@
               	</tbody>
               </table>
 
-              <!-- Penutup Tampilan Hasil Inputan Cashin Projection -->
+              <!-- Penutup Tampilan Hasil Inputan Cashout Projection -->
 
             </div>
             <!-- /.box-body -->
             
           </div>
-          <!-- END Cashin Sub Item -->
+          <!-- END Cashout Sub Item -->
 
         </div>
         <!-- /.Box Projection -->
