@@ -53,6 +53,7 @@
               			<th>NO</th>
               			<th>Kode Cash-In</th>
               			<th>Cash-In</th>
+                    <th class="text-center">Ubah Posisi</th>
               			<th style="text-align: center;">Action</th>
               		</tr>
 
@@ -63,12 +64,42 @@
               		<?php 
               			$no=1;
               			foreach($data_cashin as $row_cashin){
+                      
+                      // Posisi Terbawah
+                      $r_posisi_terbawah = $this->db->query("SELECT MAX(posisi) AS posisi FROM tbl_jb_cashin")->row_array();
+                      $posisi_terbawah = $r_posisi_terbawah['posisi'];
+
               		?>
 
               		<tr>
               			<td><?php echo $no++; ?></td>
               			<td><?php echo $row_cashin['kode_jb']; ?></td>
               			<td><?php echo $row_cashin['nama_jb']; ?></td>
+                    <td class="text-center">
+
+                      <!-- Jika Posisi nya teratas, disable tombol naik posisi -->
+                      <?php if($row_cashin['posisi'] == 1){ ?>
+                        <a href="#" class="btn btn-default disabled btn-xs">
+                          <i class="fa fa-arrow-circle-up"></i>
+                        </a>
+                      <?php }else{ ?>
+                        <a href="<?php echo base_url().'pengaturan_cashin/naik_posisi/'.$row_cashin['id_jb'] ?>" class="btn btn-success btn-xs">
+                          <i class="fa fa-arrow-circle-up"></i>
+                        </a>
+                      <?php } ?>
+
+                      <!-- Jika Posisi nya terbawah, disable tombol turun posisi -->
+                      <?php if($row_cashin['posisi'] == $posisi_terbawah){ ?>
+                        <a href="#" class="btn btn-default disabled btn-xs">
+                          <i class="fa fa-arrow-circle-down"></i>
+                        </a>
+                      <?php }else{ ?>
+                        <a href="<?php echo base_url().'pengaturan_cashin/turun_posisi/'.$row_cashin['id_jb'] ?>" class="btn btn-danger btn-xs">
+                          <i class="fa fa-arrow-circle-down"></i>
+                        </a>
+                      <?php } ?>
+                      
+                    </td>
               			<td style="text-align: center;">
 
                             <a class="btn btn-info btn-xs" href="<?php echo base_url().'pengaturan_cashin/edit_cashin/'.$row_cashin['id_jb'] ?>">

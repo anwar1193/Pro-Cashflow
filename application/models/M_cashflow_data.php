@@ -403,7 +403,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 1)
 	public function totalCashinProj_1($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -411,7 +411,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 1)
 	public function totalCashinReal_1($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -597,7 +597,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 2)
 	public function totalCashinProj_2($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -605,7 +605,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 2)
 	public function totalCashinReal_2($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -792,7 +792,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 3)
 	public function totalCashinProj_3($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -800,7 +800,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 3)
 	public function totalCashinReal_3($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -984,7 +984,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 4)
 	public function totalCashinProj_4($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -992,7 +992,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 4)
 	public function totalCashinReal_4($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -1177,7 +1177,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 5)
 	public function totalCashinProj_5($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashinproj INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -1185,7 +1185,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 5)
 	public function totalCashinReal_5($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashinreal INNER JOIN tbl_sb_cashin USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -2453,7 +2453,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 1)
 	public function totalCashoutProj_1($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -2461,7 +2461,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 1)
 	public function totalCashoutReal_1($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -3240,7 +3240,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 2)
 	public function totalCashoutProj_2($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -3248,7 +3248,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 2)
 	public function totalCashoutReal_2($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -4027,7 +4027,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 3)
 	public function totalCashoutProj_3($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -4035,7 +4035,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 3)
 	public function totalCashoutReal_3($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -4814,7 +4814,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 4)
 	public function totalCashoutProj_4($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -4822,7 +4822,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 4)
 	public function totalCashoutReal_4($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -5600,7 +5600,7 @@ class M_cashflow_data extends CI_Model {
 	// Projection (Total Hari - 5)
 	public function totalCashoutProj_5($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(projection) AS tProjection FROM tbl_cashoutproj INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}
@@ -5608,7 +5608,7 @@ class M_cashflow_data extends CI_Model {
 	// Realisasi (Total Hari - 5)
 	public function totalCashoutReal_5($tanggal){
 		$result = $this->db->query('
-			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal WHERE tanggal="'.$tanggal.'"
+			SELECT SUM(realisasi) AS tRealisasi FROM tbl_cashoutreal INNER JOIN tbl_sb_cashout USING(kode_status) WHERE status_aktif=1 AND tanggal="'.$tanggal.'"
 		');
 		return $result->row_array();
 	}

@@ -15,7 +15,7 @@ class Pengaturan_cashin extends CI_Controller {
 		date_default_timezone_set("Asia/Jakarta");
 		cek_belum_login();
 
-		$data_cashin = $this->db->query("SELECT * FROM tbl_jb_cashin ORDER BY id_jb")->result_array();
+		$data_cashin = $this->db->query("SELECT * FROM tbl_jb_cashin ORDER BY posisi")->result_array();
 
 		$data_cashin_sub = $this->db->query("SELECT  
                                                 tbl_sb_cashin.id_sb,    
@@ -230,6 +230,46 @@ class Pengaturan_cashin extends CI_Controller {
         if($result > 0){
             echo '<script>alert("Sub-Item CashIn Berhasil Di Aktifkan");window.location="../index"</script>';
         }
+    }
+
+    public function naik_posisi($id){
+        // Ambil Posisi Sekarang
+        $r_posisi_sekarang = $this->db->get_where('tbl_jb_cashin', array('id_jb' => $id))->row_array();
+        $posisi_sekarang = $r_posisi_sekarang['posisi'];
+        $posisi_diatasnya = $posisi_sekarang - 1;
+
+        // Turunkan Posisi Diatasnya 1 tingkat
+        $this->db->update('tbl_jb_cashin', array(
+            'posisi' => $posisi_sekarang
+        ), array('posisi' => $posisi_diatasnya));
+
+        // Naikkan Posisi Sekarang 1 tingkat
+        $this->db->update('tbl_jb_cashin', array(
+            'posisi' => $posisi_diatasnya
+        ), array('id_jb' => $id));
+
+        echo '<script>alert("Posisi Cash-In Item Berhasil Diubah");window.location="../index"</script>';
+
+    }
+
+    public function turun_posisi($id){
+        // Ambil Posisi Sekarang
+        $r_posisi_sekarang = $this->db->get_where('tbl_jb_cashin', array('id_jb' => $id))->row_array();
+        $posisi_sekarang = $r_posisi_sekarang['posisi'];
+        $posisi_dibawahnya = $posisi_sekarang + 1;
+
+        // Naikkan Posisi dibawahnya 1 tingkat
+        $this->db->update('tbl_jb_cashin', array(
+            'posisi' => $posisi_sekarang
+        ), array('posisi' => $posisi_dibawahnya));
+
+        // Turunkan Posisi Sekarang 1 tingkat
+        $this->db->update('tbl_jb_cashin', array(
+            'posisi' => $posisi_dibawahnya
+        ), array('id_jb' => $id));
+
+        echo '<script>alert("Posisi Cash-In Item Berhasil Diubah");window.location="../index"</script>';
+
     }
 
 }
